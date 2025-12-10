@@ -130,6 +130,8 @@ def _build_llm():
     model = getattr(settings, "llm_model", "gpt-4o-mini")
     temp = float(getattr(settings, "llm_temperature", 0.0))
     provider = getattr(settings, "llm_provider", "openai")
+    
+    logger.info(f"🔄 _build_llm chamado. Model: {model}, Provider: {provider}, Key presente: {bool(settings.google_api_key)}")
 
     if provider == "google" or "gemini" in model.lower():
         return ChatGoogleGenerativeAI(
